@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - My School</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('school.jpg') no-repeat center center/cover;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover { background-color: #45a049; }
+    a { color: #00bfff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Login</h2>
+    <input type="text" id="adminUser" placeholder="Username">
+    <input type="password" id="adminPass" placeholder="Password">
+    <button onclick="login()">Login</button>
+
+    <p>Don't have an account? <a href="#" onclick="toggleSignup()">Sign up</a></p>
+
+    <div id="signupForm" style="display:none;">
+      <h3>Admin Signup</h3>
+      <input type="text" id="newAdmin" placeholder="New Username">
+      <input type="password" id="newPass" placeholder="New Password">
+      <button onclick="signup()">Create Account</button>
+    </div>
+
+    <p><a href="index.html">← Back to Home</a></p>
+  </div>
+
+  <script>
+    function toggleSignup(){
+      document.getElementById("signupForm").style.display = "block";
+    }
+    function login(){
+      alert("Admin login successful (demo)");
+    }
+    function signup(){
+      alert("Admin signup successful (demo)");
+    }
+  </script>
+</body>
+</html>
+
