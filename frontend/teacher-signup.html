@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    input, button {
+      margin: 8px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background: #ff9800;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover { background: #e68900; }
+  </style>
+</head>
+<body>
+  <h2>Teacher Signup</h2>
+  <input id="username" type="text" placeholder="Username" />
+  <input id="password" type="password" placeholder="Password" />
+  <button onclick="signup()">Signup</button>
+
+  <script>
+    async function signup() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const res = await fetch('http://4.224.152.136:5000/api/teacher/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert('Signup successful! Redirecting to login...');
+        window.location.href = '/teacher.html';
+      } else {
+        alert(data.message || 'Signup failed');
+      }
+    }
+  </script>
+</body>
+</html>
+
