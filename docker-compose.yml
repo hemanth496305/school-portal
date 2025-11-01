@@ -1,0 +1,35 @@
+version: '3'
+services:
+  mongo_db:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: school_backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo_db
+    environment:
+      - MONGO_URL=mongodb://mongo_db:27017/schoolDB
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    container_name: school_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+
+volumes:
+  mongo_data:
+

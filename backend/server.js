@@ -9,7 +9,10 @@ app.use(bodyParser.json());
 
 // ===== MongoDB Connection =====
 // Since MongoDB is running in Docker with container name "mongodb"
-mongoose.connect('mongodb://admin:admin123@172.17.0.2:27017/schoolPortal?authSource=admin')
+mongoose.connect(process.env.MONGO_URL, {
+	useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(() => console.log("✅ MongoDB Connected Successfully"))
 .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
